@@ -21,16 +21,13 @@ public class PublicationLibrary {
             return true;
         }
         return false;
-
     }
-
     public boolean addReferences(String identifier, Set<String> references){
         if (publications.containsKey(identifier)) {
             this.references.get(identifier).addAll(references);
             return true;
         }
         return false;
-
     }
     public boolean addVenue (String venueName, Map<String, String> venueInformation, Set<String> researchAreas){
         if (!venues.containsKey(venueName)){
@@ -59,7 +56,6 @@ public class PublicationLibrary {
         }
         return false;
     }
-
     public Map<String, String> getPublications(String key) {
         Map<String, String> answer = new HashMap<>();
         if (publications.containsKey(key)) {
@@ -68,7 +64,6 @@ public class PublicationLibrary {
         }
         return answer;
     }
-
     public int authorCitations ( String author ){
         int total = 0;
         for (Map<String, String> publication : publications.values()) {
@@ -84,21 +79,15 @@ public class PublicationLibrary {
     }
     public Set<String> seminalPapers ( String area, int paperCitation, int otherCitations ) {
         // Logic to implement
-
         return new HashSet<>();
     }
 
     public Set<String> collaborators( String author, int distance ){
         // Logic to implement
-
         return new HashSet<>();
     }
-
     public Set<String> authorResearchAreas ( String author, int threshold ) {
         // Logic to implement
-
         return new HashSet<>();
     }
-
-
 }

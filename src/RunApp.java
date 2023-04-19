@@ -1,14 +1,14 @@
 import java.util.*;
 public class RunApp {
     public static void main(String[] args) {
-        String publication_name,publication_year;
+        String editor_name,editor_contact;
         Scanner s = new Scanner(System.in);
-        System.out.print("Enter Publication Name: ");
-        publication_name=s.nextLine();
-        System.out.print("Enter Publication Year: ");
-        publication_year=s.nextLine();
+        System.out.print("Enter Editor Name: ");
+        editor_name=s.nextLine();
+        System.out.print("Enter Editor contact: ");
+        editor_contact=s.nextLine();
         DbAccess test=new DbAccess();
-        test.addPublication(publication_name,publication_year);
+        test.addEditor(editor_name,editor_contact);
 
     }
 }
