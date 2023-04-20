@@ -1,3 +1,4 @@
+import java.io.UnsupportedEncodingException;
 import java.util.*;
 public class PublicationLibrary {
 
@@ -77,9 +78,34 @@ public class PublicationLibrary {
         }
         return total;
     }
-    public Set<String> seminalPapers ( String area, int paperCitation, int otherCitations ) {
+    public Set<String> seminalPapers ( String area, int paperCitation, int otherCitations ) throws UnsupportedEncodingException {
+        
         // Logic to implement
-        return new HashSet<>();
+        Set<String> seminalPapers = new HashSet<>();
+        Map<String, Integer> paperReferences = new HashMap<>();
+        for (String publicationId : publications.keySet()){
+            Map<String, String> publicationInformation = publications.get(publicationId);
+            String publicationArea = publicationInformation.get("research_area");
+            if (publicationArea != null && areas.containsKey(publicationArea) && areas.get(publicationArea) != null){
+                Set<String> publicationReferences = references.getOrDefault(publicationId, new HashSet<>());
+                paperReferences.put(publicationId, publicationReferences.size());
+                if (publicationArea.equals(area) && publicationReferences.size() >= otherCitations) {
+                    boolean isSeminal = true;
+                    for (String referenceId : publicationReferences){
+                        Map<String, String> referenceInformation = publications.get(referenceId);
+                        String referenceArea = referenceInformation.get("research_area");
+                        if (referenceArea != null && referenceArea.equals(area) && paperReferences.containsKey(referenceId) && paperReferences.get(referenceId) >= paperCitation){
+                            isSeminal = false;
+                            break;
+                        }
+                    }
+                    if (isSeminal){
+                        seminalPapers.add(publicationId);
+                    }
+                }
+            }
+        }
+        return seminalPapers;
     }
 
     public Set<String> collaborators( String author, int distance ){

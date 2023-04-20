@@ -24,11 +24,24 @@ public class DbAccess {
             ps.setString(1, editor_name);
             ps.setString(2, editor_contact);
             int i = ps.executeUpdate();
-            System.out.println(i + " row(s) inserted");
-        } catch (SQLException e) {
+            System.out.println(i + " editor added");
+            } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
 
+    public void addVenue(String venue_name, String venue_location) {
+        try {
+            Connection con = DatabaseConnection.getInstance().getConnection();
+            String sql = "INSERT INTO venue (venue_name, venue_location) VALUES (?, ?)";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, venue_name);
+            ps.setString(2, venue_location);
+            int i = ps.executeUpdate();
+            System.out.println(i + " venue added");
+            } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
     public void addPublicationReference(int publication_id, String reference_title, int reference_year, String reference_pp, String reference_url, String authors) {
         try {
@@ -40,19 +53,11 @@ public class DbAccess {
             ps.setInt(3, reference_year);
             ps.setString(4, reference_pp);
             ps.setString(5, reference_url);
-
-//            StringBuilder sb = new StringBuilder();
-//            for (Author tempAuthor : authors) {
-//                sb.append(tempAuthor).append(", ");
-//            }
-//            String authors1 = sb.toString().substring(0, sb.length() - 2);
-                ps.setString(6, authors);
-                int i = ps.executeUpdate();
-                System.out.println(i + " row(s) inserted");
-
-        } catch (SQLException e) {
+            ps.setString(6, authors);
+            int i = ps.executeUpdate();
+            System.out.println(i + " references added");
+            } catch (SQLException e) {
             e.printStackTrace();
-        }
-
+            }
     }
 }
