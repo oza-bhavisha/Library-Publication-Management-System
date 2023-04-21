@@ -105,7 +105,6 @@ public class RunApp {
                     reference_pp=scanner.next();
                     System.out.println("Enter reference url: ");
                     reference_url=scanner.next();
-
                     dba1.addPublicationReference(publication_id, reference_title, reference_year, reference_pp, reference_url, authors);
                     break;
 
