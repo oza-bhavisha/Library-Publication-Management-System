@@ -7,6 +7,7 @@ CREATE TABLE addreferences (
     reference_pp VARCHAR (255) NOT NULL,
     reference_url VARCHAR (255) NOT NULL,
     authors VARCHAR (255) NOT NULL,
+    authors VARCHAR (255),
     publication_id INT,
     FOREIGN KEY (publication_id) REFERENCES publication(publication_id)
 );
@@ -50,6 +51,19 @@ CREATE TABLE publication (
     FOREIGN KEY (venue_id) REFERENCES venue(venue_id)
 );
 
+CREATE TABLE organisation (
+	organisation_id INT PRIMARY KEY auto_increment NOT NULL,
+    organisation_name VARCHAR (255) NOT NULL,
+    organisation_contact VARCHAR (255) NOT NULL,
+    organisation_homeOffice VARCHAR (255) NOT NULL
+);
+
+CREATE TABLE organiser (
+	organiser_id INT PRIMARY KEY auto_increment NOT NULL,
+    organiser_name VARCHAR (255) NOT NULL,
+    organiser_contact VARCHAR (255) NOT NULL
+);
+
 CREATE TABLE publisher (
 	publisher_id INT PRIMARY KEY auto_increment NOT NULL,
 	publisher_name VARCHAR (255) NOT NULL,
@@ -65,12 +79,7 @@ CREATE TABLE research_area (
 CREATE TABLE venue (
 	venue_id INT PRIMARY KEY auto_increment NOT NULL,
 	venue_name VARCHAR (255) NOT NULL,
-    venue_location VARCHAR (255) NOT NULL,
-    conference_loaction VARCHAR (255) NOT NULL,
-    publisher_id INT,
-    publication_id INT,
-    FOREIGN KEY (publisher_id) REFERENCES publisher(publisher_id),
-    FOREIGN KEY (publication_id) REFERENCES publication(publication_id)
+    venue_location VARCHAR (255) NOT NULL
 );
 
 CREATE TABLE venue_research (

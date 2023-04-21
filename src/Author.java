@@ -1,5 +1,3 @@
-import java.util.List;
-
 public class Author {
     private String author_name;
     private int author_id;

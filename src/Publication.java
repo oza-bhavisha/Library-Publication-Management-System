@@ -1,4 +1,3 @@
-import java.lang.ref.Reference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,8 +69,8 @@ public class Publication {
         return venue_id;
     }
 
-    public List<Author> getAuthors(){
-        return authors;
+    public String getAuthors(){
+        return authors.toString();
     }
 
     public List<publicationReference> getReferences() {
